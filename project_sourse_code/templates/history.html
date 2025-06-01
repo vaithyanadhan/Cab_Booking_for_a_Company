@@ -1,0 +1,40 @@
+<!DOCTYPE html><html><head>
+  <meta charset="UTF-8"><title>Ride History</title>
+  <link rel="stylesheet" href="{{ url_for('static','style.css') }}">
+</head><body>
+<div class="container">
+  <header>
+    <h1>Your Ride History</h1>
+    <nav>
+      <a href="{{ url_for('user_dashboard') }}">Dashboard</a>
+      <a href="{{ url_for('logout') }}">Logout</a>
+    </nav>
+  </header>
+  {% if rides %}
+    <table>
+      <thead>
+        <tr>
+          <th>Booked At</th><th>Pickup</th><th>Driver</th><th>Fare</th><th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for r in rides %}
+        <tr>
+          <td>{{ r.booked_at }}</td>
+          <td>{{ r.location }}</td>
+          <td>{{ r.driver_name }}</td>
+          <td>₹{{ r.fare }}</td>
+          <td>{{ r.status }}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+          <th colspan="3">Total</th>
+          <th colspan="2">₹{{ total }}</th>
+        </tr>
+      </tbody>
+    </table>
+  {% else %}
+    <p>No rides yet.</p>
+  {% endif %}
+</div>
+</body></html>

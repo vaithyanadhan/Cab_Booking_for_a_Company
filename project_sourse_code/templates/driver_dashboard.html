@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Driver: {{ session['driver_name'] }} (Earnings: ₹{{ earnings }})</h2>
+
+<form method="post">
+  <button name="toggle" class="btn">
+    {% if available %}Go Offline{% else %}Go Available{% endif %}
+  </button>
+</form>
+
+<h3>Pending Requests</h3>
+<form method="post">
+  <select name="assign">
+    <option value="">— select ride —</option>
+    {% for r in pending %}
+      <option value="{{ r.id }}">
+        {{ r.pickup }} @ {{ r.time }} — {{ r.user_name }} ({{ r.user_phone }})
+      </option>
+    {% endfor %}
+  </select>
+  <button>Accept</button>
+</form>
+
+{% if current %}
+<h3>Current Ride</h3>
+<p>
+  {{ current.pickup }} @ {{ current.time }}<br>
+  {{ current.user_name }} — ₹{{ current.fare }}
+</p>
+<form method="post">
+  <button name="complete" value="{{ current.id }}" class="btn">
+    Mark Completed
+  </button>
+</form>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="grid">
+  <a href="{{ url_for('register') }}" class="card">
+    <div class="card-header"><i class="fas fa-user-plus"></i> Sign Up</div>
+    <div class="card-body"><p>Create an account</p></div>
+  </a>
+  <a href="{{ url_for('user_login') }}" class="card">
+    <div class="card-header"><i class="fas fa-taxi"></i> User Login</div>
+    <div class="card-body"><p>Book rides</p></div>
+  </a>
+  <a href="{{ url_for('driver_login') }}" class="card">
+    <div class="card-header"><i class="fas fa-car-side"></i> Driver Login</div>
+    <div class="card-body"><p>Accept requests</p></div>
+  </a>
+  <a href="{{ url_for('admin_login') }}" class="card">
+    <div class="card-header"><i class="fas fa-cogs"></i> Admin Login</div>
+    <div class="card-body"><p>System overview</p></div>
+  </a>
+</div>
+{% endblock %}

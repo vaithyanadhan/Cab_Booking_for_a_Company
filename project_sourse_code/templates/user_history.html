@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Your Rides (Wallet: ₹{{ wallet }})</h2>
+<table>
+  <tr>
+    <th>ID</th><th>Pickup</th><th>Time</th><th>Fare</th>
+    <th>Status</th><th>Driver</th><th>Action</th>
+  </tr>
+  {% for r in rides %}
+  <tr>
+    <td>{{ r.id }}</td>
+    <td>{{ r.pickup }}</td>
+    <td>{{ r.time }}</td>
+    <td>₹{{ r.fare }}</td>
+    <td>{{ r.status }}</td>
+    <td>{{ r.driver_name or 'TBD' }}</td>
+    <td>
+      {% if r.status=='pending' %}
+        <a class="btn" href="{{ url_for('user_cancel', ride_id=r.id) }}">Cancel (100% RFND)</a>
+      {% elif r.status=='assigned' %}
+        <a class="btn" href="{{ url_for('user_complete', ride_id=r.id) }}">Complete</a>
+        <a class="btn" href="{{ url_for('user_cancel', ride_id=r.id) }}">Cancel (50% RFND)</a>
+      {% elif r.status=='completed' %}
+        ✅
+      {% else %}
+        ⚠︎ Cancelled
+      {% endif %}
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}

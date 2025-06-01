@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Book a Ride</h2>
+<form method="POST">
+  <select id="pickup" name="pickup" required>
+    <option value="">Select Pickup</option>
+    <option>Central Bus Stand</option>
+    <option>Chathiram</option>
+    <option>Sri Rangam</option>
+    <option>TVS Tollgate</option>
+  </select>
+  <div id="driver-info"></div>
+  <input name="drop" placeholder="Drop Location" required>
+  <input type="submit" value="Book">
+</form>
+{% endblock %}

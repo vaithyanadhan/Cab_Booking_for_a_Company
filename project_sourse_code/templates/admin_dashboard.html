@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Admin Dashboard</h2>
+<form method="post">
+  <h3>Edit Users</h3>
+  <table>
+    <tr><th>ID</th><th>Name</th><th>Email</th><th>Phone</th><th>Save</th></tr>
+    {% for u in users %}
+    <tr>
+      <td><input type="hidden" name="u_id" value="{{u.id}}">{{u.id}}</td>
+      <td><input name="u_name"  value="{{u.name}}"></td>
+      <td><input name="u_email" value="{{u.email}}"></td>
+      <td><input name="u_phone" value="{{u.phone}}"></td>
+      <td><button name="update_user">Save</button></td>
+    </tr>
+    {% endfor %}
+  </table>
+
+  <h3>Add Driver</h3>
+  <input name="d_name" placeholder="Name" required><br>
+  <input name="d_phone" placeholder="Phone" required><br>
+  <select name="d_location">
+    <option>Central Bus Stand</option>
+    <option>Chathiram Bus Stand</option>
+    <option>Srirangam</option>
+    <option>TVS Tollgate</option>
+  </select><br>
+  <button name="add_driver">Add Driver</button>
+</form>
+
+<h3>All Rides</h3>
+<table>
+  <tr><th>User</th><th>Driver</th><th>Pickup</th><th>Time</th><th>Fare</th><th>Status</th></tr>
+  {% for r in rides %}
+  <tr>
+    <td>{{r.user_name}}</td>
+    <td>{{r.driver_name or 'TBD'}}</td>
+    <td>{{r.pickup}}</td>
+    <td>{{r.time}}</td>
+    <td>₹{{r.fare}}</td>
+    <td>{{r.status}}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}

@@ -1,0 +1,27 @@
+<!DOCTYPE html><html><head>
+  <meta charset="UTF-8"><title>Book</title>
+  <<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</head><body>
+<div class="container">
+  <header>
+    <h1>Book a Ride</h1>
+    <nav>
+      <a href="{{ url_for('user_dashboard') }}">Dashboard</a>
+      <a href="{{ url_for('logout') }}">Logout</a>
+    </nav>
+  </header>
+  <form method="POST">
+    <label>Stop:</label>
+    <select name="stop" required>
+      {% for s in stops %}
+      <option>{{ s }}</option>
+      {% endfor %}
+    </select>
+    <label>Departure:</label>
+    <input type="datetime-local" name="departure_time" required>
+    <button>Confirm</button>
+  </form>
+</div>
+</body></html>

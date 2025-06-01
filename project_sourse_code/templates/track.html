@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Track Ride</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script>
+        // Simulated simple tracking for demonstration
+        function simulateTracking() {
+            const statusElem = document.getElementById('status');
+            const statuses = ["Driver is arriving", "Driver is nearby", "Driver has arrived", "Ride in progress"];
+            let idx = 0;
+            setInterval(() => {
+                statusElem.textContent = statuses[idx];
+                idx = (idx + 1) % statuses.length;
+            }, 3000);
+        }
+        window.onload = simulateTracking;
+    </script>
+</head>
+<body>
+    <h2>Track Your Ride</h2>
+    <p>Ride ID: {{ ride.id }}</p>
+    <p>Driver: {{ ride.driver_name }} ({{ ride.phone }})</p>
+    <p>Pickup: {{ ride.pickup }}</p>
+    <p>Destination: {{ ride.destination }}</p>
+    <p>Status: <span id="status">{{ ride.status }}</span></p>
+    <p><a href="{{ url_for('user_dashboard') }}">Back to Dashboard</a></p>
+</body>
+</html>

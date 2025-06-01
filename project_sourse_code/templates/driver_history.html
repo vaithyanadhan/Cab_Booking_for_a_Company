@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Your Ride History & Earnings</h2>
+<table>
+  <tr>
+    <th>ID</th><th>Pickup</th><th>Time</th><th>Fare</th>
+    <th>Status</th><th>Earning</th>
+  </tr>
+  {% for r in history %}
+  <tr>
+    <td>{{ r.id }}</td>
+    <td>{{ r.pickup }}</td>
+    <td>{{ r.time }}</td>
+    <td>₹{{ r.fare }}</td>
+    <td>{{ r.status }}</td>
+    <td>₹{{ r.earned }}</td>
+  </tr>
+  {% endfor %}
+  <tr>
+    <th colspan="5">Total Earnings</th>
+    <th>₹{{ total }}</th>
+  </tr>
+</table>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<form method="post">
+  {% for c,m in get_flashed_messages(with_categories=true) %}
+    <div class="flash {{c}}">{{m}}</div>
+  {% endfor %}
+  <h2>Admin Login</h2>
+  <label>Username</label><input name="username" required>
+  <label>Password</label><input name="password" type="password" required>
+  <button>Login</button>
+</form>
+{% endblock %}

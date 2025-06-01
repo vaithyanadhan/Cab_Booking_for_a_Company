@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>{{ title or "KRCT Cab Booking" }}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a2d9d6f9fd.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/ola-style.css') }}">
+  </head>
+  <body>
+    <header class="header">
+      <h1>KRCT Cab Booking</h1>
+      <nav>
+        <a href="{{ url_for('home') }}">Home</a>
+        {% if session.get('user_id') %}
+          <a href="{{ url_for('user_dashboard') }}">Dashboard</a>
+          <a href="{{ url_for('user_history') }}">History</a>
+          <a href="{{ url_for('user_logout') }}">Logout</a>
+        {% elif session.get('driver_id') %}
+          <a href="{{ url_for('driver_dashboard') }}">Dashboard</a>
+          <a href="{{ url_for('driver_history') }}">Earnings</a>
+          <a href="{{ url_for('driver_logout') }}">Logout</a>
+        {% elif session.get('admin') %}
+          <a href="{{ url_for('admin_dashboard') }}">Admin</a>
+          <a href="{{ url_for('logout') }}">Logout</a>
+        {% else %}
+          <a href="{{ url_for('user_login') }}">Login</a>
+        {% endif %}
+        <a href="{{ url_for('help') }}">Help</a>
+      </nav>
+    </header>
+    <main class="container">
+      {% block content %}{% endblock %}
+    </main>
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+  </body>
+</html>

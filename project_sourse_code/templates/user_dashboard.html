@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Hi, {{ session['user_name'] }} (Wallet: ₹{{ wallet }})</h2>
+
+<form method="post">
+  <h3>Request a Ride</h3>
+  <label>Pickup</label>
+  <select name="pickup">
+    {% for loc in fares.keys() %}
+      <option>{{ loc }}</option>
+    {% endfor %}
+  </select>
+  <label>Date & Time</label>
+  <input type="datetime-local" name="time" required>
+  <button>Request Ride</button>
+</form>
+
+<h3>Available Drivers</h3>
+<ul>
+  {% if avail %}
+    {% for loc,name in avail.items() %}
+      <li>{{ loc }} — {{ name }}</li>
+    {% endfor %}
+  {% else %}
+    <li>No drivers available</li>
+  {% endif %}
+</ul>
+{% endblock %}
